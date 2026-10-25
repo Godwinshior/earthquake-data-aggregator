@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg:         #070810;
+  --bg-2:       #0d0f1a;
+  --bg-3:       #13162b;
+  --surface:    #191c30;
+  --border:     #252840;
+  --border-2:   #2e3255;
+  --text:       #e2e5f5;
+  --text-2:     #8b90b8;
+  --text-3:     #4a5082;
+  --accent:     #4f7cff;
+  --accent-2:   #7b5cff;
+  --micro:      #22c55e;
+  --minor:      #84cc16;
+  --light:      #eab308;
+  --moderate:   #f97316;
+  --strong:     #ef4444;
+  --major:      #dc2626;
+  --great:      #991b1b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background:  var(--bg);
+  color:       var(--text);
+  font-family: 'Syne', sans-serif;
+  min-height:  100vh;
+  overflow-x:  hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track  { background: var(--bg-2); }
+::-webkit-scrollbar-thumb  { background: var(--border-2); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* Mono text for data */
+.mono { font-family: 'Space Mono', monospace; }
+
+/* Severity badges */
+.badge-micro    { background: #052e16; color: var(--micro);    border: 1px solid #14532d; }
+.badge-minor    { background: #1a2e05; color: var(--minor);    border: 1px solid #365314; }
+.badge-light    { background: #2d2008; color: var(--light);    border: 1px solid #713f12; }
+.badge-moderate { background: #2d1500; color: var(--moderate); border: 1px solid #7c2d12; }
+.badge-strong   { background: #2d0a0a; color: var(--strong);   border: 1px solid #991b1b; }
+.badge-major    { background: #1c0505; color: #f87171;         border: 1px solid #7f1d1d; }
+.badge-great    { background: #130303; color: #fca5a5;         border: 1px solid #450a0a; }
+
+/* Pulse animation for live indicator */
+@keyframes pulse-ring {
+  0%   { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+@keyframes wave {
+  0%   { transform: scaleX(1); opacity: 0.8; }
+  50%  { transform: scaleX(1.02); opacity: 0.4; }
+  100% { transform: scaleX(1); opacity: 0.8; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-up  { animation: fadeInUp 0.4s ease forwards; }
+.animate-slide-in { animation: slideIn 0.3s ease forwards; }
+
+/* Leaflet overrides */
+.leaflet-container { background: #090b18 !important; }
+.leaflet-tile      { filter: brightness(0.5) saturate(0.4) hue-rotate(200deg); }
+
+/* Seismic wave decoration */
+.seismic-line {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  animation: wave 3s ease-in-out infinite;
+}
